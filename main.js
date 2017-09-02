@@ -1,5 +1,4 @@
 //Initializing the DOMS
-const obj = $('.animate');
 const codeHead   = $('.code .heading');
 const codeObject = $('.code .obj');
 const animateObj = $('.anim');
@@ -11,7 +10,6 @@ const viewpad = $('.viewPad');
 let next = undefined;
 let prev = undefined;
 let text = '';
-let typing = undefined;
 let terminalText = '';
 let index = 1;
 const typingSpeed = 10;
@@ -20,8 +18,8 @@ const animateCursorCode = '<div class="animate-cursor" />';
 const transitionDuration = 200;
 
 //codes
-const html1 = `
-<!-- HTML generated using hilite.me --><div style="background: #f0f0f0; overflow:auto;width:auto;color:black;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><table><tr><td><pre style="margin: 0; line-height: 125%"> 1
+const html1 = ` <div style="background: #f0f0f0; overflow:auto;width:auto;color:black;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;">
+<table><tr><td><pre style="margin: 0; line-height: 125%"> 1
  2
  3
  4
@@ -44,173 +42,9 @@ const html1 = `
     <span style="color: #062873; font-weight: bold">&lt;div</span> <span style="color: #4070a0">class=&#39;animate&#39;</span><span style="color: #062873; font-weight: bold">&gt;</span> <span style="color: #062873; font-weight: bold">&lt;/div&gt;</span>
   <span style="color: #062873; font-weight: bold">&lt;/body&gt;</span>
 <span style="color: #062873; font-weight: bold">&lt;/html&gt;</span>
-</pre></td></tr></table></div>
-`;
-
-
-//making basic functions
-const clearScreen = () => {
-    codeHead.html('');
-    codeObject.html('');
-    animateObj.html('');
-    viewpad.html('');
-    clearInterval(window.typing);
-    index = 1;
-};
-const nextFunction = () => {
-    viewpad.animate({right: '-100vw'}, 200, 'linear');
-    clearScreen();
-    if (next) next();
-};
-const prevFunction = () => {
-    viewpad.animate({right: '-100vw'}, 200, 'linear');
-    clearScreen();
-    if (prev) prev();
-};
-const copyToClipboard = (element) => {
-    let $temp = $("<input>");
-    $("body").append($temp);
-    $temp.text($(element).html()).select();
-    console.log($(element).text());
-    document.execCommand("copy");
-    $temp.remove();
-};
-const doButtons = () => {
-    (prev==undefined)?prevBtn.addClass('disabled'):prevBtn.removeClass('disabled');
-    (next==undefined)?nextBtn.addClass('disabled'):nextBtn.removeClass('disabled');
-};
-$(nextBtn).click(nextFunction());
-$(prevBtn).click(prevFunction());
-const typeFunction = (callback) => {
-    index = 1;
-    $('.animate-cursor').remove();
-    window.typing = setInterval(function () {
-        $('.cursor').remove();
-        if (index < text.length) {
-            animateObj.html(animateObj.html() + text[index++]);
-            animateObj.html(animateObj.html().replace('\n', '<br>' + terminalText));
-            animateObj.append(cursorCode);
-        } else {
-            clearInterval(window.typing);
-            animateObj.append(animateCursorCode);
-            if(callback) callback();
-        }
-    }, typingSpeed);
-};
-const showViewPad = (callback) =>{
-    callback ? viewpad.animate({right: '1vw'}, transitionDuration, 'linear', callback) : viewpad.animate({right: '1vw'}, transitionDuration, 'linear');
-};
-
-//making screens
-var screen5 = () => {
-
-    clearScreen();
-    prev = screen3;
-    next = screen4;
-    clearInterval(window.typing);
-    obj.html(`<span style="color:orangered">CSS</span>
-<div class="html" onclick="copyToClipboard('#html')">
-<div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><table><tr><td><pre style="margin: 0; line-height: 125%"> 1
- 2
- 3
- 4
- 5
- 6
- 7
- 8
- 9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19</pre></td><td><pre style="margin: 0; line-height: 125%"><span style="color: #bb0066; font-weight: bold">.cursor</span> {
-  <span style="color: #008800; font-weight: bold">display</span>: <span style="color: #008800; font-weight: bold">inline</span>;
-  <span style="color: #008800; font-weight: bold">border-right</span>: <span style="color: #0000DD; font-weight: bold">0.15em</span> <span style="color: #008800; font-weight: bold">solid</span> <span style="color: #003388">orange</span>;
-}
-
-<span style="color: #bb0066; font-weight: bold">.animate-cursor</span> {
-  <span style="color: #008800; font-weight: bold">display</span>: <span style="color: #008800; font-weight: bold">inline</span>;
-  <span style="color: #008800; font-weight: bold">border-right</span>: <span style="color: #0000DD; font-weight: bold">0.15em</span> <span style="color: #008800; font-weight: bold">solid</span> <span style="color: #003388">orange</span>;
-  animation: <span style="color: #008800; font-weight: bold">blink</span> <span style="color: #0000DD; font-weight: bold">0.75s</span> step-end infinite;
-}
-
-<span style="color: #008800; font-weight: bold">@keyframes</span> <span style="color: #bb0066; font-weight: bold">blink</span> {
-  <span style="color: #bb0066; font-weight: bold">from</span>,<span style="color: #bb0066; font-weight: bold">to</span> {
-    <span style="color: #008800; font-weight: bold">border-color</span>: <span style="color: #008800; font-weight: bold">transparent</span>;
-  }
-  <span style="color: #bb0066; font-weight: bold">50</span>% {
-    <span style="color: #008800; font-weight: bold">border-color</span>: <span style="color: #003388">orange</span>;
-  }
-}
-</pre></td></tr></table></div>
-
-</div><br><br><span class="animaie"></span>
-`);
-    window.text = `Ok, so this is the basic CSS of the page. It defines
-    font color and background color of the page. On line 7, instead of body,
-    ofcorse you could have used id or class of any division where you wanted
-    these effects. 
-    `;
-    let l = 0;
-    window.obj = $('.animaie');
-    window.typing = setInterval(function(){
-        if(l<text.length){
-            $('.animaie .cursor').remove()
-            $('.animaie').html($('.animaie').html()+text[l++]);
-            obj.html(obj.html().replace('\n','<br>'+terminalText));
-            obj.append('<div class="cursor"></div>');
-        }
-        else {
-            clearInterval(typing);
-            $('.animaie .cursor').remove();
-            $('.animaie').append('<div class="animate-cursor" />');
-            $('.viewPad').animate({
-                right:'1vw'
-            },200,'linear');
-            setTimeout(function(){
-                window.next = screen2;
-                $('.next').removeClass('disabled');
-                text+=`Still no effect to html, lets see what we did.
-                We defined display to be flex and "alignment" to be left.
-                You can read about these on google. They are very usefull.
-                
-                Other than that, every thing else is full optional.
-                
-                Save this file with name 'style.css' in same directory as 'index.html'
-                
-                This will be a save point. You can click on next when finished.`;
-                window.typing = setInterval(function(){
-                    $('.animate-cursor').remove();
-                    if(l<text.length){
-                        $('.animaie .cursor').remove();
-                        $('.animaie').html($('.animaie').html()+text[l++]);
-                        obj.html(obj.html().replace('\n','<br>'+terminalText));
-                        obj.append('<div class="cursor"></div>');
-                    }
-                    else{
-                        clearInterval(typing);
-                        $('.animaie .cursor').remove();
-                        $('.animaie').append('<div class="animate-cursor" />');
-                    }
-                },100);
-            });
-        }
-    },100);
-
-}
-var screen4 = () => {
-    clearScreen();
-    prev = showObjects;
-    next = screen4;
-    clearInterval(window.typing);
-    obj.html(`<span style="color:orangered">CSS</span>
-<div class="html" onclick="copyToClipboard('#html')">
-<div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;color:black"><table><tr><td><pre style="margin: 0; line-height: 125%"> 1
+</pre></td></tr></table></div>`;
+const css1 = ` <div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;color:black">
+ <table><tr><td><pre style="margin: 0; line-height: 125%"> 1
  2
  3
  4
@@ -237,66 +71,210 @@ var screen4 = () => {
   <span style="color: #008800; font-weight: bold">justify</span>-<span style="color: #008800; font-weight: bold">content</span>: <span style="color: #008800; font-weight: bold">left</span>;
   <span style="color: #008800; font-weight: bold">font</span>: <span style="color: #008800; font-weight: bold">bold</span>;
 }
+</pre></td></tr></table></div>`;
+const css2 = ` <div style="background: #f0f0f0; overflow:auto;width:auto;color:black;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;">
+ <table><tr><td><pre style="margin: 0; line-height: 125%"> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19</pre></td><td><pre style="margin: 0; line-height: 125%"><span style="color: #0e84b5; font-weight: bold">.cursor</span> {
+  <span style="color: #007020; font-weight: bold">display</span><span style="color: #666666">:</span> <span style="color: #007020; font-weight: bold">inline</span>;
+  <span style="color: #007020; font-weight: bold">border-right</span><span style="color: #666666">:</span> <span style="color: #40a070">0.15em</span> <span style="color: #007020; font-weight: bold">solid</span> <span style="color: #007020">orange</span>;
+}
+
+<span style="color: #0e84b5; font-weight: bold">.animate-cursor</span> {
+  <span style="color: #007020; font-weight: bold">display</span><span style="color: #666666">:</span> <span style="color: #007020; font-weight: bold">inline</span>;
+  <span style="color: #007020; font-weight: bold">border-right</span><span style="color: #666666">:</span> <span style="color: #40a070">0.15em</span> <span style="color: #007020; font-weight: bold">solid</span> <span style="color: #007020">orange</span>;
+  animation<span style="color: #666666">:</span> <span style="color: #007020; font-weight: bold">blink</span> <span style="color: #40a070">0.75s</span> step<span style="color: #666666">-</span>end infinite;
+}
+
+<span style="color: #007020; font-weight: bold">@keyframes</span> <span style="color: #062873; font-weight: bold">blink</span> {
+  <span style="color: #062873; font-weight: bold">from</span><span style="color: #666666">,</span><span style="color: #062873; font-weight: bold">to</span> {
+    <span style="color: #007020; font-weight: bold">border-color</span><span style="color: #666666">:</span> <span style="color: #007020; font-weight: bold">transparent</span>;
+  }
+  <span style="color: #062873; font-weight: bold">50</span><span style="color: #666666">%</span> {
+    <span style="color: #007020; font-weight: bold">border-color</span><span style="color: #666666">:</span> <span style="color: #007020">orange</span>;
+  }
+}
+</pre></td></tr></table></div>`;
+const script1 = ` <div style="background: #f0f0f0; overflow:auto;width:auto;color:black;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;">
+ <table><tr><td><pre style="margin: 0; line-height: 125%"> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23</pre></td><td><pre style="margin: 0; line-height: 125%"><span style="color: #007020; font-weight: bold">var</span> terminalText <span style="color: #666666">=</span> <span style="color: #4070a0">&quot;&gt;&gt;&quot;</span>;
+<span style="color: #007020; font-weight: bold">var</span> text <span style="color: #666666">=</span> <span style="color:#03af07">\` 
+Hi There !
+How are you ?
+\`</span>;
+
+$(<span style="color: #4070a0">&#39;.animate&#39;</span>).text(terminalText);
+
+<span style="color: #007020; font-weight: bold">let</span> l <span style="color: #666666">=</span> <span style="color: #40a070">1</span>;
+<span style="color: #007020; font-weight: bold">var</span> typing <span style="color: #666666">=</span> setInterval(<span style="color: #007020; font-weight: bold">function</span>(){
+  <span style="color: #007020; font-weight: bold">if</span>(l<span style="color: #666666">&lt;</span>text.length){
+    $(<span style="color: #4070a0">&#39;.animate .cursor&#39;</span>).remove()
+    $(<span style="color: #4070a0">&#39;.animate&#39;</span>).html($(<span style="color: #4070a0">&#39;.animate&#39;</span>).html()<span style="color: #666666">+</span>text[l<span style="color: #666666">++</span>]);
+    <span style="color: #007020; font-weight: bold">var</span> obj <span style="color: #666666">=</span> $(<span style="color: #4070a0">&#39;.animate&#39;</span>);
+    obj.html(obj.html().replace(<span style="color: #4070a0">&#39;\\n&#39;</span>,<span style="color: #4070a0">&#39;&lt;br&gt;&#39;</span><span style="color: #666666">+</span>terminalText));
+    obj.append(<span style="color: #4070a0">&#39;&lt;div class=&quot;cursor&quot;&gt;&lt;/div&gt;&#39;</span>);
+  }
+  <span style="color: #007020; font-weight: bold">else</span> {
+    clearInterval(typing);
+    $(<span style="color: #4070a0">&#39;.animate .cursor&#39;</span>).remove();
+    $(<span style="color: #4070a0">&#39;.animate&#39;</span>).append(<span style="color: #4070a0">&#39;&lt;div class=&quot;animate-cursor&quot; /&gt;&#39;</span>)
+  }
+},<span style="color: #40a070">100</span>);
 </pre></td></tr></table></div>
 
-</div><br><br>
-`);
-    window.text = `Ok, so this is the basic CSS of the page. It defines
+`;
+//making basic functions
+const clearScreen = () => {
+    codeHead.html('');
+    codeObject.html('');
+    animateObj.html('');
+    viewpad.html('');
+    clearInterval(window.typing);
+    index = 1;
+};
+const nextFunction = () => {
+    viewpad.animate({right: '-100vw'}, 200, 'linear');
+    clearScreen();
+    if (next) next();
+};
+const prevFunction = () => {
+    viewpad.animate({right: '-100vw'}, 200, 'linear');
+    clearScreen();
+    if (prev) prev();
+};
+const copyToClipboard = (element) => {
+    let $temp = $("<input>");
+    $("body").append($temp);
+    $temp.text($(element).html()).select();
+    document.execCommand("copy");
+    $temp.remove();
+};
+const doButtons = () => {
+    (prev==undefined)?prevBtn.addClass('disabled'):prevBtn.removeClass('disabled');
+    (next==undefined)?nextBtn.addClass('disabled'):nextBtn.removeClass('disabled');
+};
+$(nextBtn).click(nextFunction());
+$(prevBtn).click(prevFunction());
+const typeFunction = (callback) => {
+    index = 1;
+    $('.animate-cursor').remove();
+    window.typing = setInterval(function () {
+        $('.cursor').remove();
+        if (index < text.length) {
+            animateObj.html(animateObj.html() + text[index++]);
+            animateObj.html(animateObj.html().replace('\n', '<br>' + terminalText));
+            animateObj.append(cursorCode);
+        } else {
+            clearInterval(window.typing);
+            animateObj.append(animateCursorCode);
+            if (callback) callback();
+        }
+    }, typingSpeed);
+};
+const showViewPad = (callback) =>{
+    callback ? viewpad.animate({right: '1vw'}, transitionDuration, 'linear', callback) : viewpad.animate({right: '1vw'}, transitionDuration, 'linear');
+};
+
+//making screens
+const screen6 = () => {
+    prev = screen5;
+    next = undefined;
+    doButtons();
+    codeHead.html('JAVASCRIPT');
+    text = `
+    We will store all text inside one variable, and then append 1 character each time to the division.
+    You can google what setInterval and clearInterval does.`;
+    typeFunction(function(){
+        codeObject.html(script1).addClass('animateCode');
+    });
+};
+const screen5 = () => {
+    prev = screen4;
+    next = screen6;
+    doButtons();
+    codeHead.html('CSS');
+    codeObject.html(css2);
+    text = ` Any typing animation generally contains a cursor, which does not blink when we are typing, and at ends, starts blinking.
+    We have defined two kinds of cursor classes, .cursor and .animante-cursor for these two types of cursor properties.`;
+    typeFunction(function(){
+        showViewPad(function(){
+            text = ` Add above code inside style. 
+            
+            Now lets see what various attributes do. In line 9, we have used an animation blink, that repeats for infinite time. We gave animate-cursor a 0.15em thick right border. We will change the color of this right border to give the effects of blinking. 
+            As seen in blink keyframe, animation starts with transparent right border, then becomes orange, then again becomes transparent. And this cycle continues. cursor class has no animation as we dont want it to animate. 
+            I can say display inline was need to make sure cursor has no other thickness other than border-right.`;
+            typeFunction();
+        });
+    });
+};
+const screen4 = () => {
+    prev = screen3;
+    next = screen5;
+    doButtons();
+    codeHead.html(`CSS`);
+    codeObject.html(css1);
+    text = ` Ok, so this is the basic CSS of the page. It defines
     font color and background color of the page. On line 7, instead of body,
     ofcorse you could have used id or class of any division where you wanted
-    these effects. 
-    `;
-    let l = 0;
-    window.typing = setInterval(function(){
-        if(l<text.length){
-            $('.animate .cursor').remove()
-            $('.animate').html($('.animate').html()+text[l++]);
-            obj.html(obj.html().replace('\n','<br>'+terminalText));
-            obj.append('<div class="cursor"></div>');
-        }
-        else {
-            clearInterval(typing);
-            $('.animate .cursor').remove();
-            $('.animate').append('<div class="animate-cursor" />');
-            $('.viewPad').animate({
-                right:'1vw'
-            },200,'linear');
-            setTimeout(function(){
-                window.next = screen2;
-                $('.next').removeClass('disabled');
-                text+=`Still no effect to html, lets see what we did.
+    these effects.`;
+    typeFunction(function(){
+        showViewPad(function(){
+            text = ` Still no effect to html, lets see what we did.
                 We defined display to be flex and "alignment" to be left.
                 You can read about these on google. They are very usefull.
                 
                 Other than that, every thing else is full optional.
                 
-                Save this file with name 'style.css' in same directory as 'index.html'
+                Add this code inside style attribute.
                 
                 This will be a save point. You can click on next when finished.`;
-                window.typing = setInterval(function(){
-                    $('.animate-cursor').remove();
-                    if(l<text.length){
-                        $('.animate .cursor').remove()
-                        $('.animate').html($('.animate').html()+text[l++]);
-                        obj.html(obj.html().replace('\n','<br>'+terminalText));
-                        obj.append('<div class="cursor"></div>');
-                    }
-                    else{
-                        clearInterval(typing);
-                        $('.animate .cursor').remove();
-                        $('.animate').append('<div class="animate-cursor" />');
-                    }
-                },100);
-            });
-        }
-    },100);
+            typeFunction();
+        })
+    });
 
-}
+};
 const screen3 = () =>{
     prev = screen2;
     next = screen4;
     doButtons();
-    codeHead.html('<div style="color:darkorange">HTML</div>');
+    codeHead.html('HTML');
     codeObject.html(html1);
     text = ` Ok, So here is the html part of code. We are not going to change this much.`;
     typeFunction(function(){
@@ -315,7 +293,7 @@ const screen3 = () =>{
            typeFunction();
        });
     });
-}
+};
 const screen2 = () => {
     prev = screen1;
     next = screen3;
