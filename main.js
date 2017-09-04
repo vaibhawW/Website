@@ -12,13 +12,13 @@ let prev = undefined;
 let text = '';
 let terminalText = '';
 let index = 1;
-const typingSpeed = 10;
+const typingSpeed = 150;
 const cursorCode = '<div class="cursor" />';
 const animateCursorCode = '<div class="animate-cursor" />';
 const transitionDuration = 200;
 
 //codes
-const html1 = ` <div style="background: #f0f0f0; overflow:auto;width:auto;color:black;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;">
+const html1   = ` <div style="background: #f0f0f0; overflow:auto;width:auto;color:black;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;">
 <table><tr><td><pre style="margin: 0; line-height: 125%"> 1
  2
  3
@@ -43,7 +43,7 @@ const html1 = ` <div style="background: #f0f0f0; overflow:auto;width:auto;color:
   <span style="color: #062873; font-weight: bold">&lt;/body&gt;</span>
 <span style="color: #062873; font-weight: bold">&lt;/html&gt;</span>
 </pre></td></tr></table></div>`;
-const css1 = ` <div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;color:black">
+const css1    = ` <div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;color:black">
  <table><tr><td><pre style="margin: 0; line-height: 125%"> 1
  2
  3
@@ -72,7 +72,7 @@ const css1 = ` <div style="background: #ffffff; overflow:auto;width:auto;border:
   <span style="color: #008800; font-weight: bold">font</span>: <span style="color: #008800; font-weight: bold">bold</span>;
 }
 </pre></td></tr></table></div>`;
-const css2 = ` <div style="background: #f0f0f0; overflow:auto;width:auto;color:black;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;">
+const css2    = ` <div style="background: #f0f0f0; overflow:auto;width:auto;color:black;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;">
  <table><tr><td><pre style="margin: 0; line-height: 125%"> 1
  2
  3
@@ -157,9 +157,8 @@ $(<span style="color: #4070a0">&#39;.animate&#39;</span>).text(terminalText);
     $(<span style="color: #4070a0">&#39;.animate&#39;</span>).append(<span style="color: #4070a0">&#39;&lt;div class=&quot;animate-cursor&quot; /&gt;&#39;</span>)
   }
 },<span style="color: #40a070">100</span>);
-</pre></td></tr></table></div>
+</pre></td></tr></table></div>`;
 
-`;
 //making basic functions
 const clearScreen = () => {
     codeHead.html('');
@@ -172,8 +171,7 @@ const clearScreen = () => {
 const nextFunction = () => {
     viewpad.animate({right: '-100vw'}, 200, 'linear');
     clearScreen();
-    if (next) next();
-};
+    if (next) next();};
 const prevFunction = () => {
     viewpad.animate({right: '-100vw'}, 200, 'linear');
     clearScreen();
@@ -181,7 +179,7 @@ const prevFunction = () => {
 };
 const copyToClipboard = (element) => {
     let $temp = $("<input>");
-    $("body").append($temp);
+    $("body").append(temp);
     $temp.text($(element).html()).select();
     document.execCommand("copy");
     $temp.remove();
@@ -223,6 +221,45 @@ const screen6 = () => {
     You can google what setInterval and clearInterval does.`;
     typeFunction(function(){
         codeObject.html(script1).addClass('animateCode');
+        showViewPad(function(){
+            $('.hiddenView').show();
+            const terminaltx = ">>";
+            const tx = `
+                Hi There!
+                How are you?
+                `;
+
+            $('.an').text(terminaltx);
+
+            let l = 1;
+            const ty = setInterval(function(){
+                if (l < tx.length) {
+                    $('.an .cs').remove();
+                    $('.an').html($('.an').html() + tx[l++]);
+                    let objz = $('.an');
+                    objz.html(objz.html().replace('\n', '<br>' + terminaltx));
+                    objz.append('<div class="cs"></div>');
+                } else {
+                    clearInterval(ty);
+                    $('.an .cs').remove();
+                    $('.an').append('<div class="an-cs" />')
+                }
+            },100);
+           text = `
+           
+           Now let's explain this code. On Line 1, We have decided a default code for terminal, that will be shown on every new line.
+           On line 2, The text that we will be typing.
+           On lin 7, we have selected the division on which we will be animating this stuff. The first text to appear should be terminal text.
+           On line 9, we have defined a variable that is going to keep the index of letter that is to be added to the 'animation' division next time.
+           On 10'th line, we started the setInterval function (see syntax of setInterval) and gave it a typing speed on line 23 = 100ms.
+           On line 11,  we check if the l is still indexing within the text range. It is useless to run setInterval if all text has been typed.
+           If it is still typing, i.e. l<text.length, then we remove the cursor from it's current position, add next letter and then add the cursor again.
+           In this process, if we encounter a line break, then we replace that break with break tag.
+           
+           Now if l was indexing to more than text length, then we stop the setInterval function, remove the static cursor, and add an animated cursor to the 
+           division.`;
+           typeFunction();
+        });
     });
 };
 const screen5 = () => {
@@ -255,6 +292,7 @@ const screen4 = () => {
     ofcorse you could have used id or class of any division where you wanted
     these effects.`;
     typeFunction(function(){
+
         showViewPad(function(){
             text = ` Still no effect to html, lets see what we did.
                 We defined display to be flex and "alignment" to be left.

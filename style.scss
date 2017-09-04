@@ -142,3 +142,18 @@ button{
     height:24em;
   }
 }
+
+.cs{
+  display:inline;
+  border-right: 0.15em solid aliceblue;
+}
+.an-cs{
+  display:inline;
+  border-right: 0.15em solid orange;
+  animation: bl 0.75s step-end infinite;
+}
+
+@keyframes bl {
+  from,to {border-color: transparent; }
+  50% {border-color: orange;}
+}
