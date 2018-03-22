@@ -1,1 +1,295 @@
-<!DOCTYPE html><html><head><meta charset="utf-8"><title>Home | Ybhaw</title><link href="style.css" rel="stylesheet"></head><body><div class="animate"><div class="code"><div class="heading"></div><div class="obj" onclick="copyToClipboard('.obj div table tr td:nth-child(2)')"></div></div><div class="anim"></div></div><div class="viewPad"><div class="hiddenView" style="display:none;"><div class="an"></div></div></div><button class="prev">PREVIOUS</button><button class="next">NEXT</button><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script><script src="main.js"></script></body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Hello</title>
+    <link rel="stylesheet" href="./public/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./public/css/font-awesome.css">
+    <link rel="stylesheet" href="./public/css/style-main.css">
+</head>
+<body>
+
+<div class="d-flex flex-row wrapper h-100 main-wrapper">
+    <div class="sidebar flex h-100 bg-white p-4">
+        <div class="user-icon">
+            <img src="./public/img/my-pic.png" alt="Website Developer's Image" class="img-fluid">
+        </div>
+        <div class="sidebar-buttons mt-5 d-flex flex-column left">
+            <a href="index.html" class="nav-button d-flex flex-row">
+                <span class="icon">
+                    <i class="fab fa-fw fa-laravel"></i>
+                </span>
+                <div class="active-display ml-1">Laravel</div>
+            </a>
+            <a href="SEO.html" class="nav-button d-flex flex-row">
+                <span class="icon">
+                    <i class="fa fa-fw fa-info"></i>
+                </span>
+                <div class="active-display ml-1">SEO</div>
+            </a>
+        </div>
+    </div>
+    <div class="content w-100 bg-light">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+            <a href="#" class="sidebar-toggle">
+                <i class="fa fa-bars text-white fa-2x"></i>
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+        </nav>
+        <main class="bg-white p-5 mr-0">
+            <h1 class="display-1">Laravel</h1>
+            <div class="index">
+                <a href="#installations">Laravel Installations</a>
+            </div>
+            <section id="installations">
+                <h2 class="display-3">
+                    Laravel Installations
+                </h2>
+                <hr>
+                <div class="d-md-flex flex-row">
+                    <div class="wrapper">
+                        <ul class="list-group">
+                            <li class="list-group-item">
+                                Laragon
+                                <small class="float-right ml-4">
+                                    <a href="https://laragon.org/download.html" class="badge badge-warning" target="_blank">
+                                        Download
+                                    </a>
+                                </small>
+                            </li>
+                            <li class="list-group-item">
+                                PhpMyAdmin
+                                <small class="float-right ml-4">
+                                    <a href="https://www.phpmyadmin.net/" class="badge badge-warning" target="_blank">
+                                        Download
+                                    </a>
+                                </small>
+                            </li>
+                            <li class="list-group-item">
+                                Node.js
+                                <small class="float-right ml-4">
+                                    <a href="https://nodejs.org/en/download/" class="badge badge-warning" target="_blank">
+                                        Download
+                                    </a>
+                                </small>
+                            </li>
+                            <li class="list-group-item">
+                                Koala
+                                <small class="float-right ml-4">
+                                    <a href="http://koala-app.com/" class="badge badge-warning" target="_blank">
+                                        Download
+                                    </a>
+                                </small>
+                            </li>
+                            <li class="list-group-item">
+                                PHP Storm
+                                <small class="float-right ml-4">
+                                    <a href="https://www.jetbrains.com/phpstorm/download/download-thanks.html?platform=windows" class="badge badge-success" target="_blank">
+                                        Download
+                                    </a>
+                                </small>
+                            </li>
+                            <li class="list-group-item">
+                                Composer
+                                <small class="float-right ml-4">
+                                    <a href="https://getcomposer.org/Composer-Setup.exe" class="badge badge-success" target="_blank">
+                                        Download
+                                    </a>
+                                </small>
+                            </li>
+                        </ul>
+                        <br>
+                        <small class="pl-2">
+                            <span href="#" class="badge badge-warning" aria-disabled="true">download</span> ⇒ Download Page
+                        </small>
+                        <br>
+                        <small class="pl-2">
+                            <span href="#" class="badge badge-success" aria-disabled="true">download</span> ⇒ Direct Download
+                        </small>
+                    </div>
+                    <div class="container">
+                        <p>
+                            Here is the <strong><a href="https://laravel.com/docs/5.5/installation#installation" target="_blank">official link for installing Laravel</a></strong>.
+                            But instead of following the "official" standard way, we will follow a more manageable and easy way. Start with installing the products from the left side table, in that order.
+                            Laragon is a Vagrant Box for windows. It provides you with an already build server. Now install PhpMyAdmin. Just download it and extract to
+                            <em class="bg-info p-1 text-light">{LARAGON_DIR}\etc\apps\phpMyAdmin</em>. Koala is a compiler for SASS/SCSS etc. Useful! PhpStorm is the best ide out
+                            there for laravel development. But it is paid, has educational free versions which you need to renew every year. Node.js and composer are
+                            package manager for js and dependency manager for PHP respectively. After downloading them, you may have to add composer and npm to environment
+                            variables. You can google how to do this. All of the above installations are one-time setup. Once done correctly, forget about it!  <br>
+                            Now for installing Laravel, copy following line of code in command prompt:
+                        </p>
+                        <code class="bg-dark p-2 pr-5 d-inline-block ">composer global require "laravel/installer"</code>
+                        <br>
+                        <br>
+                        <p>
+                            <span class="text-warning">This installs "laravel" on your PC.</span> After this you have to make a project in laravel, go to the directory in which you want to make laravel project. Run the following command in the console:
+                        </p>
+                        <code class="bg-dark p-2 pr-5 d-inline-block ">laravel new PROJECT_NAME</code>
+                        <br>
+                        <br>
+                        <p>
+                            After some time, this will show installation complete. Now let me explain
+                        </p>
+                    </div>
+                </div>
+            </section>
+            <section id="recommended">
+                <h2 class="display-3">Recommended Packages</h2>
+                <hr>
+                <div class="d-md-flex flex-row">
+                    <div class="wrapper">
+                        <ul class="list-group">
+                            <li class="list-group-item">
+                                Voyager
+                                <a class="pl-2 float-right">
+                                    <span href="#" class="badge badge-success ml-3" aria-disabled="true">
+                                        <i class="fas fa-code"></i>
+                                    </span>
+                                </a>
+                            </li>
+                            <li class="list-group-item">
+                                Font-Awesome
+                                <a class="pl-2 float-right">
+                                    <span href="#" class="badge badge-success ml-3" aria-disabled="true">
+                                        <i class="fas fa-code"></i>
+                                    </span>
+                                </a>
+                            </li>
+                            <li class="list-group-item">
+                                Vue
+                                <a class="pl-2 float-right">
+                                    <span href="#" class="badge badge-success ml-3" aria-disabled="true">
+                                        <i class="fas fa-code"></i>
+                                    </span>
+                                </a>
+                            </li>
+                            <li class="list-group-item">
+                                Vue Router
+                                <a class="pl-2 float-right">
+                                    <span href="#" class="badge badge-success ml-3" aria-disabled="true">
+                                        <i class="fas fa-code"></i>
+                                    </span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="container">
+                        <p>
+                            These packages are good for starting new projects as they provide kickstart.
+                            Voyager is used as admin panel and offers basic curd. Vue is frontend framework, wonderful one!
+                            Font-awesome is one of the best fonts pack available out there. Also, I have not mentioned bootstrap,
+                            jquery as they are already integrated with Laravel. Below I have explained the procedure of installing these packages in the project.
+                        </p>
+                        <section id="voyager-installation">
+
+                            <h3 class="display-4">Installing Voyager</h3>
+                            <hr>
+                            <p>
+                                Installing voyager is pretty straight. Voyager uses storage and database, so it would be useful
+                                to setup them before installing voyager. Also, I usually install voyager right after creating
+                                the new project. So installing other required packages before installing voyager would also be
+                                a good idea. Here is the code to install other required packages, setting up storage and connecting to the database.
+                            </p>
+                            <code class="bg-dark p-2 pr-5 d-inline-block ">
+                                npm install <br>
+                                php artisan storage:link
+                            </code>
+                            <br> <br>
+                            <p>
+                                In <em class="bg-info p-1 text-light">.env</em> file, edit database connections and  <span class="text-warning">change APP_URL</span> to URL of the domain (with port)
+                            </p>
+                            <code class="bg-dark p-2 pr-5 d-inline-block">
+                                APP_URL= http://localhost:8000
+                            </code>
+                            <br> <br>
+                            <p>
+                                This is necessary for proper functioning of voyager. Well, we are completed with the pre-requisites. Now, for installing Voyager, you can follow the
+                                <a href="https://voyager.readme.io/docs/installation" target="_blank">Official Guide</a>. Here are the basic commands needed to install and setup voyager.
+                            </p>
+                            <code class="bg-dark p-2 pr-5 d-inline-block">
+                                composer require tcg/voyager <br>
+                                php artisan voyager:install <br>
+                                php aritsan voyager:admin --create
+                            </code>
+                        </section>
+                        <section>
+                            <h3 class="display-4">Installing Font-Awesome</h3>
+                            <hr>
+                            <p>
+                                Font Awesome has a very large community and it has a large database of icons.
+                                For finding the code for different icons, you can visit <a href="https://fontawesome.com/icons/search?style=solid">Font Awesome Official Site</a>.
+                                On the same page, you will find link to getting started with font-awesome, thou there is nothing more than copy pasting. Enough with the talk, for
+                                installing font-awesome use this code:
+                            </p>
+                            <code class="bg-dark d-inline-block p-2 pr-5">
+                                npm install <br>
+                                npm install font-awesome
+                            </code>
+                            <p>
+                                Note that, for installing any javascript resource like font-awesome, the code is pretty much the same. Anyways, after doing this,
+                                add following line of code in <em class="bg-info p-1 text-light">resources/assets/sass/app.sass</em>:
+                            </p>
+                            <code class="bg-dark d-inline-block p-2 pr-5">
+                                @import "~font-awesome/scss/font-awesome";
+                            </code>
+                        </section>
+                        <section>
+                            <h3 class="display-4">Installing Vue and Vue Router</h3>
+                            <hr>
+                            <p>Installing Vue and Vue Router is similar to that of font-awesome. Just type:</p>
+                            <code class="bg-dark d-inline-block p-2 pr-5">
+                                npm install vue <br>
+                                npm install vue-router
+                            </code>
+                            <p>
+                                Vue and Vue-Router require certain configurations. All of which happens in js/app.js and sass/app.sass file of resources/assets directory. Copy the following code and replace it in app.js file:
+                            </p>
+                            <code class="bg-dark d-inline-block p-2 pr-5">
+                                require('./bootstrap'); <br>
+                                window.Vue = require('vue'); <br>
+                                import Vue from 'vue' <br>
+                                import VueRouter from 'vue-router' <br>
+                                Vue.use(VueRouter); <br>
+                                <br>
+                                const app = new Vue({ <br>
+                                el: '#app', <br>
+                                });
+                            </code>
+                            <br><br>
+                        </section>
+                        <p>
+                            Voila! We are ready to go. Go to console, type
+                        </p>
+
+                        <code class="bg-dark d-inline-block p-2 pr-5">
+                            npm watch run
+                        </code>
+                        <br>
+                        <br>
+                        <p>
+                            Open the laragon page for that project, i.e. <i>{PROJECT NAME}.oo</i>, if you have not changed the settings. Now go to <i>{PROJECT NAME}.oo/admin</i> to see voyager working. Go to localhost/phpmyadmin to see the database.
+                        </p>
+                    </div>
+                </div>
+
+            </section>
+        </main>
+    </div>
+</div>
+
+<script src="./public/js/jquery-3.2.1.min.js"></script>
+<script src="./public/js/popper.min.js"></script>
+<script src="./public/js/bootstrap.min.js"></script>
+<script defer src="//use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
+<script>
+    $(document).ready(function () {
+        $('.sidebar-toggle').click(function(){
+            $('.sidebar').toggleClass('expand');
+        });
+    });
+</script>
+</body>
+</html>

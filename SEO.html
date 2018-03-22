@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Hello</title>
+    <link rel="stylesheet" href="./public/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./public/css/font-awesome.css">
+    <link rel="stylesheet" href="./public/css/style-main.css">
+    <link rel="stylesheet" href="./public/css/style-seo.css">
+</head>
+<body>
+
+<div class="d-flex flex-row wrapper h-100 main-wrapper">
+    <div class="sidebar flex h-100 bg-white p-4">
+        <div class="user-icon">
+            <img src="./public/img/my-pic.png" alt="Website Developer's Image" class="img-fluid">
+        </div>
+        <div class="sidebar-buttons mt-5 d-flex flex-column left">
+            <a href="index.html" class="nav-button d-flex flex-row">
+                <span class="icon">
+                    <i class="fab fa-fw fa-laravel"></i>
+                </span>
+                <div class="active-display ml-1">Laravel</div>
+            </a>
+            <a href="SEO.html" class="nav-button d-flex flex-row">
+                <span class="icon">
+                    <i class="fa fa-fw fa-info"></i>
+                </span>
+                <div class="active-display ml-1">SEO</div>
+            </a>
+        </div>
+    </div>
+    <div class="content w-100 bg-light">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+            <a href="#" class="sidebar-toggle">
+                <i class="fa fa-bars text-white fa-2x"></i>
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+        </nav>
+        <main class="bg-white p-5 mr-0">
+            <h1 class="display-1">SEO</h1>
+            <section id="installations">
+                <h2 class="display-4">
+                    Search Engine Optimization
+                </h2>
+                <hr>
+                <div>
+                    <p>
+                        SEO is an integral part of Web Development. From the research that I had done, I have compiled a list of tasks that are to be achieved to optimize page for SEO. You can find a checklist below with the key points for the SEO. On hovering over it, you can get the details regarding that point.
+                    </p>
+                    <p>
+                        There are many online sites available which rate and suggests on website with SEO in mind. I have listed some of these resources also in
+                        <a href="#resources">resource section </a>. I have tried to avoid websites that requires
+                    </p>
+                    <p>
+                        I have also listed some tutorials and websites that I have used to learn SEO. 
+                    </p>
+                </div>
+            </section>
+            <section id="checklist">
+                <h2 class="display-3">Checklist</h2>
+                <hr>
+                <div class="d-md-flex flex-row checkbox-parent flex-wrap">
+                    
+                </div>
+            </section>
+            <section id="resources">
+                <h2 class="display-3">Resources</h2>
+                <hr>
+                <div class="d-md-flex flex-row flex-wrap">
+                    <a class="checkbox" href="https://seositecheckup.com">SEO Site Checkup </a>
+                </div>
+            </section>
+        </main>
+    </div>
+</div>
+
+<script src="./public/js/jquery-3.2.1.min.js"></script>
+<script src="./public/js/popper.min.js"></script>
+<script src="./public/js/bootstrap.min.js"></script>
+<script defer src="//use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
+<script>
+    $(document).ready(function () {
+        $('.sidebar-toggle').click(function(){
+            $('.sidebar').toggleClass('expand');
+        });
+        $('.checkbox').tooltip().click(function(e){
+            console.log(e);
+            $(e.target).toggleClass('active');
+        });
+        let seoData = {
+            'HTML Validation'   :  'Document should be valid HTML',
+            'Content Relevance' :  'Content of the page should be SEO Optimized. It should contain the keywords several times',
+            'Using Tags'        :  'Using Heading, strong, bold etc. preferred over font size, weight etc.',
+            'Image-Text'        :  'Try to avoid adding text in images, use text',
+            'Form Contents'     :  'Information that can improve SEO should be accessible by spider, so form filled contents should be avoided',
+            'Title'             :  'Title should be short (less than 65 letters) and should contain words priority wise, first being more prior',
+            'Description Meta'  :  'Description meta should contain keywords, and should not exceed 250 letters',
+            'Social Integration':  'Meta tags for websites like facebook, Gmail and twitter should be integrated',
+            'Heading Order'     :  'H1 > H2 > H3 ... goes for SEO too',
+            'Alt attribute'     :  'Affects SEO drastically',
+            'Broken Links'      :  'Should not be present, drastically decreases ranking',
+            'Using Keywords'    :  'Content should have repetitive use of keywords',
+            'Keyword Research'  :  'Keywords can be found from autofill of google, youtube etc.',
+            'More Content'      :  'Avoid pagination if possible',
+            'Meta tags'         :  'For language, mobile/IE compatibility, chrome color etc.',
+            'Skip to Main'      :  'Adding skip to main target to every page is also considered good',
+            'Sitemap'           :  'Sitemap for bot bots and users can be added',
+            'Modified Since'    :  'Adding when the page was last updated',
+            'Speed Optimization':  'Faster Page Loading = Better Ranking',
+            'Browser Support'   :  'All popular browsers should be supported for better ranking',
+            'Using REL Tag'     :  'Showing the SEO and browser type of content is good',
+            'Page Hiarchy'      :  'No cyclic linking to pages to be present',
+            'Sharing'           :  'Search engine should know that your website is popular, sharing site links is way to do it!',
+            'Content Visibility':  'Visible contents have more priority over non-visible contents, ones that are hidden for always have negative value',
+            'Unrelated Page'    :  'Blocking links to unrelated pages that may effect ranking like Sponsors',
+            'Redirects'         :  'User should be informed about redirects',
+            'Plagrism'          :  'Content should be as unique as possbile',
+            'Cookie alert'      :  'User should be informed about storing cookies'
+        };
+        $.each(seoData,function(index, element){
+            $('.checkbox-parent').append($(`<span data-toggle="tooltip" data-placement="auto" title="${element}">${index}</span>`).addClass('checkbox red-tooltip'));
+        })
+    });
+</script>
+</body>
+</html>
